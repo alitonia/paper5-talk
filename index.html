@@ -355,8 +355,8 @@
   <div class="rule rv d1"></div>
   <p class="sub rv d2">When you fine-tune a language model on prompts collected from other
   people, some of those prompts may be written by an attacker. In this talk I show a
-  method that computes, before training starts, the worst effect any poisoned prompt in
-  the batch can have on the model's answers.</p>
+  method that computes, before the training step runs, a worst-case bound on how far
+  poisoned prompts in the batch can push the model's answers.</p>
   <div class="rv d3" style="margin-top:40px;display:flex;gap:6px;justify-content:center">
     <div class="sq"></div><div class="sq"></div><div class="sq p"></div><div class="sq"></div>
     <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq p"></div>
@@ -368,7 +368,7 @@
   A batch of 20 instruction prompts. The filled squares are prompts an attacker
   replaced. The question is what those squares can and cannot do to the model's answers.</p>
   <div class="pageno">1 / 21</div>
-  <aside class="notes-src">Open with the promise in one sentence: before training on data we do not fully control, we can compute a number that bounds the damage. The strip of squares comes back on many slides; the filled terracotta squares always mean attacker-written. Keys: arrows to move, N for these notes, F for fullscreen. Clicking on the slide does nothing, on purpose.</aside>
+  <aside class="notes-src">Open with the promise in one sentence: before training on data we do not fully control, we can compute a number that bounds the damage for one full training step. The strip of squares comes back on many slides; the filled terracotta squares always mean attacker-written. Keys: arrows to move, N for these notes, F for fullscreen. Clicking on the slide does nothing, on purpose.</aside>
 </section>
 
 <!-- 02 PLAN -->
