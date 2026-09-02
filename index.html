@@ -112,7 +112,7 @@
 
   /* ---------- ambient loops (slow) ---------- */
   .sq{width:38px;height:38px;border:2.5px solid var(--blue);border-radius:10px;
-      animation:sqIn .35s ease both}
+      animation:sqIn .35s ease both;transition:background-color .25s ease,border-color .25s ease}
   .sq.p{background:var(--red);border-color:var(--red);
         animation:sqPop .4s cubic-bezier(.2,1.4,.4,1) both, sqBreathe 5s ease-in-out 1.5s infinite}
   @keyframes sqIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
@@ -1233,6 +1233,22 @@
   addEventListener('resize',fit);fit();
   var h=parseInt((location.hash||'').replace('#',''),10);
   go(isNaN(h)?0:h-1);
+
+  // title strip: which squares are poisoned keeps changing (the attacker picks the slots)
+  (function(){
+    var sqs=[].slice.call(document.querySelectorAll('#s1 div.sq'));
+    if(sqs.length<4||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var keep=3;
+    function step(){
+      sqs.forEach(function(s){s.style.animationDelay='0s';s.classList.remove('p')});
+      var idx=sqs.map(function(_,i){return i});
+      for(var k=0;k<keep;k++){
+        var j=k+Math.floor(Math.random()*(idx.length-k)),t=idx[k];idx[k]=idx[j];idx[j]=t;
+        sqs[idx[k]].classList.add('p');
+      }
+    }
+    setInterval(step,2600);
+  })();
 })();
 </script>
 </body>
